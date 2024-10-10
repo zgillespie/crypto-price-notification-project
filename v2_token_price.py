@@ -4,24 +4,24 @@ import time
 
 def get_price(token):
     url = "https://api.coingecko.com/api/v3/simple/price"
-    params = { 
+    params = {
         'ids': token,
         'vs_currencies': 'usd'
-    }   
+    }
     try:
         response = requests.get(url, params=params)
         if response.status_code == 200:
             data = response.json()
             price = data.get(token, {}).get('usd')
             if price:
-                print(f"The current price of {token} is: ${price}")
-                
+                print(f"The current price of {uppercase_token} is: ${price}")
+
                 if price >= max_price:
-                    print(f"{token} has reached ${max_price}")
-                    send_notification("Price Alert!", f"{token} has reached ${max_price}")
+                    print(f"{uppercase_token} has reached ${max_price}")
+                    send_notification("Price Alert!", f"{uppercase_token} has reached ${max_price}")
                 elif price <= min_price:
-                    print(f"{token} has fell to ${price}")
-                    send_notification("Price Alert!", f"{token} has fell to ${price}")
+                    print(f"{uppercase_token} has fell to ${price}")
+                    send_notification("Price Alert!", f"{uppercase_token} has fell to ${price}")
             else:
                 print(f"Token '{token}' not found.")
         else:
@@ -39,6 +39,7 @@ str_max_price = input("Enter max price to send notifications: ")
 max_price = float(str_max_price)
 str_min_price = input("Enter minimum price to send notifications: ")
 min_price = float(str_min_price)
+uppercase_token = token.upper()
 
 send_notification("Reminder", "Script Started")
 
