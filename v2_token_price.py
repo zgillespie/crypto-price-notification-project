@@ -18,10 +18,10 @@ def get_price(token):
                 
                 if price >= max_price:
                     print(f"{token} has reached ${max_price}")
-                    send_notification("Price Alert!", "{token} has reached ${max_price}")
+                    send_notification(f"Price Alert!", "{token} has reached ${max_price}")
                 elif price <= min_price:
                     print(f"{token} has fell to ${price}")
-                    send_notification("Price Alert!", "{token} has fell to ${price}")
+                    send_notification(f"Price Alert!", "{token} has fell to ${price}")
             else:
                 print(f"Token '{token}' not found.")
         else:
